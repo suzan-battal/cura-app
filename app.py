@@ -311,25 +311,22 @@ else:
                 st.markdown("#### 💬 Cura says:")
                 st.markdown(f"> *Good start! You've got the basics, but you missed **{len(missing_points)}** high-yield point(s) from the lecture. Review them above, then try again.*")
 
-                # --- REAL PUBMED REFERENCES ---
+                # --- LECTURE RESOURCES ---
                 st.markdown("---")
-                st.markdown("#### 📚 PubMed References")
-                gap_terms = " ".join(missing_points.keys())
-                query = f"cell necrosis apoptosis {gap_terms}"
-                with st.spinner("Searching PubMed..."):
-                    articles = fetch_pubmed_articles(query)
-                if articles:
-                    for art in articles:
-                        st.markdown(
-                            f'<div class="cura-card" style="padding:0.8rem 1.2rem;">'
-                            f'<a href="{art["url"]}" target="_blank" style="color:#90caf9;font-weight:600;text-decoration:none;">'
-                            f'🔗 {art["title"]}</a><br>'
-                            f'<span style="color:#9e9e9e;font-size:0.8rem;">{art["journal"]} · {art["pubdate"]}</span>'
-                            f'</div>',
-                            unsafe_allow_html=True
-                        )
-                else:
-                    st.caption("⚠️ PubMed'e bağlanılamadı. İnternet bağlantınızı kontrol edin.")
+                st.markdown("#### 📚 Lecture Resources")
+                resources = [
+                    {"title": "Lecture Material 1", "url": "https://share.google/jYmQZh8L9493SusA1"},
+                    {"title": "Lecture Material 2", "url": "https://share.google/yf2U4fjq6vzzQE7cW"},
+                ]
+                for res in resources:
+                    st.markdown(
+                        f'<div class="cura-card" style="padding:0.8rem 1.2rem;">'
+                        f'<a href="{res["url"]}" target="_blank" style="color:#90caf9;font-weight:600;text-decoration:none;">'
+                        f'🔗 {res["title"]}</a>'
+                        f'</div>',
+                        unsafe_allow_html=True
+                    )
+
 
     st.markdown("</div>", unsafe_allow_html=True)
 
